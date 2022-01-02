@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="external nofollow" >
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+
+    <title>購物車</title>
+    <style>
+   .table{ margin: 0;}
+   .row1{
+     width:100%;
+     height:300px;
+    }
+  .column{
+     width:200px;
+     height:216px;
+     margin: 0px 1px 0px 1px; padding-top: 2px;
+     border:solid black 1px;
+     float:left;
+     text-align:center;
+   }
+  .column img { width: 150px;
+  }
+
+
+
+
+  .carousel-inner img {
+        width:100%;
+        height:100%;
+  }
+  .jumbotron {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding-top: 10px;
+  }
+  #demo {
+    width:100%;
+    height: 500px;
+  }
+
+  .left {
+    float: left;
+    width: 70%;
+  }
+  .right {
+    float: left;
+    width: 30%;
+  }
+  .card {
+    height: 340px;
+  }
+  .carousel-inner {
+    height: 500px;
+  }
+  .footer {
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+  }
+  .jumheight1 {
+    height: 100px;
+  }
+  .jumheight2 {
+    height: 100px;
+  }
+  .end_name {
+    margin-bottom: 5px;
+  }
+  .footer2 {
+    padding-top: 210px;
+    text-align: center;
+  }
+  .test{
+    margin-bottom: 75px;
+  }
+  .carousel-control-prev,.carousel-control-next{
+    bottom: 120px;
+  }
+
+ </style>
+
+
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">FCU Shop</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">首頁</a>
+                </li>
+            </ul>
+
+
+            <ul class="navbar-nav mb-2 mb-lg-0 d-flex">
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">登入</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.html">註冊</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">會員中心</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="shoppingcart.html">購物車</a>
+                </li>
+            </ul>
+
+            <!--<form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>-->
+        </div>
+    </div>
+</nav>
+<!--這裡寫購物車程式碼-->
+<ul class="list-group">
+    <li class="list-group-item">
+        <div class = "container">
+            <h1 class="mt-3">購物車</h1>
+            <table border="2" width="100%" class="table">
+                <thead>
+                <tr>
+                    <th>全選<input type="checkbox" onclick="check(this)"></th>
+                    <th>名稱</th>
+                    <th>圖片</th>
+                    <th>價格</th>
+                    <th>數量</th>
+                    <th>移除</th>
+                </tr>
+                </thead>
+                <tbody id="tb">
+                <!--<tr>
+                    <th><input type="checkbox" onclick="calculate()"></th>
+                    <td>商品1</td>
+                    <td><img src="#" width="100"></td>
+                    <td>3000.00</td>
+                    <td>
+                        <input type="button" value="-" onclick="jian(this)">
+                        <input type="number" value="1">
+                        <input type="button" value="+" onclick="jia(this)">
+                    </td>
+                    <td><input type="button" value="移除" onclick="del(this)"></td>
+                </tr>
+                <tr>
+                    <th><input type="checkbox" onclick="calculate()"></th>
+                    <td>商品2</td>
+                    <td><img src="#" width="100"></td>
+                    <td>2000.00</td>
+                    <td>
+                        <input type="button" value="-" onclick="jian(this)">
+                        <input type="number" value="1">
+                        <input type="button" value="+" onclick="jia(this)">
+                    </td>
+                    <td><input type="button" value="移除" onclick="del(this)"></td>
+                </tr>-->
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="6">總價<span id="total">0</span> 元</td>
+
+                </tr>
+                <tr>
+                    <td><input type="button" id="clearall" value="清空購物車"></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </li>
+    <li class="list-group-item">
+        <!--<div class="container">
+            <div class="column">
+                <p><span>商品1</span>價格:<span>3000.00</span></p>
+                <img id="img1" src="#">
+                <input type="button"  class="btn btn-primary" value="新增至購物車" onclick="add(this)" >
+            </div>
+            <div class="column">
+                <p><span>商品2</span>價格:<span>2000.00</span></p>
+                <img id="img2" src="#">
+                <input type="button"  class="btn btn-primary" value="新增至購物車" onclick="add(this)" >
+            </div>
+            <div class="column">
+                <p><span>商品3</span>價格:<span>4000.00</span></p>
+                <img id="img3" src="#">
+                <input type="button"  class="btn btn-primary" value="新增至購物車" onclick="add(this)" >
+            </div>
+            <div class="column">
+                <p><span>商品4</span>價格:<span>3500.00</span></p>
+                <img id="img4" src="#">
+                <input type="button"  class="btn btn-primary" value="新增至購物車" onclick="add(this)" >
+            </div>
+
+
+        </div>-->
+    </li>
+</ul>
+<div class="container">
+    <h1 class="mt-3">商品</h1>
+    <div class="input-group mb-3 mt-5">
+        <input type="text" class="form-control" placeholder="商品名稱" aria-label="product name" aria-describedby="searchProduct" id="productKeyword">
+        <button class="btn btn-outline-secondary" type="button" id="searchProduct">搜尋</button>
+    </div>
+
+    <div class="mt-3 row" id="productList">
+    </div>
+
+
+</div>
+
+
+
+<!-- 商品列表 -->
+
+
+<script>
+
+ $( document ).ready( function() {
+      console.log( "ready!" );
+      emptyProducts();
+      getProducts('products')
+    });
+
+    $('#searchProduct').click(function() {
+      const keyword = $('#productKeyword').val();
+      if (keyword.trim() === '') {
+        emptyProducts();
+        getProducts('products');
+
+      } else {
+        emptyProducts();
+        getProducts('products/' + keyword);
+
+
+      }
+
+    });
+
+    function emptyProducts() {
+      $('#productList').empty();
+    }
+     function add(me) {
+  var tbody = document.getElementById("tb");
+   var div = me.parentNode;
+  var spans = div.getElementsByTagName("span"); // 獲得商品名字和價格的span
+ var name = spans[0].innerText; // 獲得商品名字
+
+ var col_1 = tbody.querySelectorAll("td:nth-child(2)"); // nth-child 作為第幾個孩子
+ var found = null; // found 變數代表購物車中找到的td
+ for(var i = 0; i<col_1.length; i++) {
+  if( col_1[i].innerText == name) {
+   found = col_1[i];
+   break;
+ }
+ }
+
+ if(found != null) { //商品名字存在
+      // 修改數量 found 是找到的td
+     var tr = found.parentNode;
+     var input = tr.querySelector("td:nth-child(5)>input:last-child");
+     console.log(input);
+     jia(input);
+ } else { //商品名字不存在
+      // 新增商品
+        var tr = document.createElement("tr");
+        var th = document.createElement("th");
+        th.innerHTML = '<input type="checkbox" checked onclick="calculate()">';
+
+        var td1 = document.createElement("td");
+        td1.innerText = spans[0].innerText;
+
+        var td2 = document.createElement("td");
+        var img = document.createElement("img");
+        img.src = div.getElementsByTagName("img")[0].src;
+        img.width = "100";
+        td2.appendChild(img);
+
+        var td3 = document.createElement("td");
+        td3.innerText = spans[1].innerText;
+
+        var td4 = document.createElement("td");
+        td4.innerHTML = '<input type="button" value="-" onclick="jian(this)"><input type="number" value="1"><input type="button" value="+" onclick="jia(this)">';
+
+        var td5 = document.createElement("td");
+        td5.innerHTML = '<input type="button" value="移除" onclick="del(this)">';
+
+        tr.appendChild(th);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        tbody.appendChild(tr);
+        calculate();
+    }
+ }
+
+    function addProducts(products) {
+      for ( let product of products ) {
+        let html = '<div class="card col-4">';
+        html += '<img class="card-img-top"  src="' + product.imageUrl + '">';
+        html += '<div class="card-body">';
+        html += '<h5 class="card-title"><span>' + product.name + '</span><br> Price:  <span>' + product.price + '</span> </h5>';
+        html += '<p class="card-text">' + product.description + '</p>';
+        html += '</div>';
+        html += '<input type="button"  class="btn btn-primary" value="新增至購物車" onclick="add(this)" >';
+        html += '</div>';
+
+
+        $('#productList').append(html);
+      }
+    }
+
+    function getProducts(targetUrl) {
+      // Using the core $.ajax() method
+      $.ajax({
+          // The URL for the request
+          url: targetUrl,
+
+          // Whether this is a POST or GET request
+          type: "GET",
+
+          // The type of data we expect back
+          dataType : "json",
+      })
+        // Code to run if the request succeeds (is done);
+        // The response is passed to the function
+        .done(function( json ) {
+          let products = json;
+          addProducts(products);
+        })
+        // Code to run if the request fails; the raw request and
+        // status codes are passed to the function
+        .fail(function( xhr, status, errorThrown ) {
+          console.log( "Sorry, there was a problem!" );
+          console.log( "Error: " + errorThrown );
+          console.log( "Status: " + status );
+          console.dir( xhr );
+        })
+        // Code to run regardless of success or failure;
+        .always(function( xhr, status ) {
+          console.log( "The request is complete!" );
+        });
+    }
+
+</script>
+
+<script>
+ function calculate() {
+  var tbody = document.getElementById("tb");
+  var prices = tbody.querySelectorAll("td:nth-child(4)");
+  var numbers = tbody.querySelectorAll("td:nth-child(5)>input[type=number]");
+  var checkboxes = tbody.querySelectorAll("th:nth-child(1)>input");
+  //console.log(prices);
+   //console.log(numbers);
+   //console.log(checkboxes);
+ var total=0;
+   for(var i = 0; i < prices.length; i++) {
+    console.log("價格：" +parseInt(prices[i].innerText)+" 數量："+parseInt(numbers[i].value) + "是否勾選:" + checkboxes[i].checked);
+    if(checkboxes[i].checked){
+     total += parseInt(prices[i].innerText)*parseInt(numbers[i].value);
+ }
+   }
+   console.log("總價格：" + total);
+   document.getElementById("total").innerText = total;
+ }
+
+ $("#clearall").click(function() {
+        $("#tb").html("");
+        calculate();
+    });
+ // 移除商品
+ function del(me) {
+  var tr = me.parentNode.parentNode;
+  var tbody = tr.parentNode;
+  tbody.removeChild(tr);
+  calculate();
+ }
+ // 增加商品數量
+ function jia(me) {
+  var td = me.parentNode;
+  var inputs = td.getElementsByTagName("input"); // 找到此td下所有input標籤
+ // inputs[1].value = inputs[1].value - 0 + 1; // 用-0的辦法轉為數字
+ // parseInt 將字串轉整數 parseFloat 將字串轉小數
+   inputs[1].value = parseInt(inputs[1].value) + 1;
+   calculate();
+ }
+ // 減少商品數量
+ function jian(me) {
+  var td = me.parentNode;
+  var num = td.querySelector("input[type=number]");// 只查詢有type=number屬性的input標籤
+ var r = num.value - 1;
+ if( r >= 1) { // 只有減得的結果是大於等於1的情況下才需要改變文字框的值
+  num.value = r;
+    calculate();
+ }
+ }
+ // 改變複選框的選中狀態
+ function check(me) {
+  var tbody = document.getElementById("tb");
+  var inputs = tbody.querySelectorAll("th input");
+  for(var i = 0; i <inputs.length; i++) {
+   inputs[i].checked = me.checked; // 根據me的checked狀態去修改下面的每個checked狀態
+ }
+   calculate();
+ }
+ // 新增商品至購物車
+ function add(me) {
+  var tbody = document.getElementById("tb");
+   var div = me.parentNode;
+  var spans = div.getElementsByTagName("span"); // 獲得商品名字和價格的span
+ var name = spans[0].innerText; // 獲得商品名字
+
+ var col_1 = tbody.querySelectorAll("td:nth-child(2)"); // nth-child 作為第幾個孩子
+ var found = null; // found 變數代表購物車中找到的td
+ for(var i = 0; i<col_1.length; i++) {
+  if( col_1[i].innerText == name) {
+   found = col_1[i];
+   break;
+ }
+ }
+
+ if(found != null) { //商品名字存在
+      // 修改數量 found 是找到的td
+     var tr = found.parentNode;
+     var input = tr.querySelector("td:nth-child(5)>input:last-child");
+     console.log(input);
+     jia(input);
+ } else { //商品名字不存在
+      // 新增商品
+        var tr = document.createElement("tr");
+        var th = document.createElement("th");
+        th.innerHTML = '<input type="checkbox" checked onclick="calculate()">';
+
+        var td1 = document.createElement("td");
+        td1.innerText = spans[0].innerText;
+
+        var td2 = document.createElement("td");
+        var img = document.createElement("img");
+        img.src = div.getElementsByTagName("img")[0].src;
+        img.width = "100";
+        td2.appendChild(img);
+
+        var td3 = document.createElement("td");
+        td3.innerText = spans[1].innerText;
+
+        var td4 = document.createElement("td");
+        td4.innerHTML = '<input type="button" value="-" onclick="jian(this)"><input type="number" value="1"><input type="button" value="+" onclick="jia(this)">';
+
+        var td5 = document.createElement("td");
+        td5.innerHTML = '<input type="button" value="移除" onclick="del(this)">';
+
+        tr.appendChild(th);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        tbody.appendChild(tr);
+        calculate();
+    }
+ }
+ </script>
+</body>
+</html>
