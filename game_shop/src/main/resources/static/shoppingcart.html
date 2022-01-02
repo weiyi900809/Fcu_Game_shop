@@ -31,7 +31,7 @@
                         商品管理
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">新增商品</a></li>
+                        <li><a class="dropdown-item" href="addproducts.html">新增商品</a></li>
                         <li><a class="dropdown-item" href="#">修改商品</a></li>
                     </ul>
                 </li>
@@ -99,7 +99,7 @@
             <h1 class="mt-3">商品</h1>
 
             <div class="input-group mb-3 mt-5">
-                <input type="text" class="form-control" placeholder="商品名稱" aria-label="product name" aria-describedby="searchProduct" id="productKeyword">
+                <input type="text" class="form-control" placeholder="商品名稱" aria-label="product name" aria-describedby="searchProduct" id="productKeyword" >
                 <button class="btn btn-outline-secondary" type="button" id="searchProduct">搜尋</button>
             </div>
 
@@ -192,7 +192,7 @@
  function calculate() {
   var tbody = document.getElementById("tb");
   var prices = tbody.querySelectorAll("td:nth-child(4)");
-  var numbers = tbody.querySelectorAll("td:nth-child(5)>input[type=number]");
+  var numbers = tbody.querySelectorAll("td:nth-child(5)>input[type=text]");
   var checkboxes = tbody.querySelectorAll("th:nth-child(1)>input");
   //console.log(prices);
    //console.log(numbers);
@@ -230,9 +230,10 @@
    calculate();
  }
  // 減少商品數量
+
  function minus_number(me) {
   var td = me.parentNode;
-  var num = td.querySelector("input[type=number]");// 只查詢有type=number屬性的input標籤
+  var num = td.querySelector("input[type=text]");// 只查詢有type=number屬性的input標籤
  var r = num.value - 1;
  if( r >= 1) { // 只有減得的結果是大於等於1的情況下才需要改變文字框的值
   num.value = r;
@@ -289,7 +290,7 @@
         td3.innerText = spans[1].innerText;
 
         var td4 = document.createElement("td");
-        td4.innerHTML = '<input type="button" value="-" onclick="minus_number(this)"><input type="number" value="1"><input type="button" value="+" onclick="add_number(this)">';
+        td4.innerHTML = '<input type="button" value="-" onclick="minus_number(this)"><input type="text" value="1" readonly><input type="button" value="+" onclick="add_number(this)">';
 
         var td5 = document.createElement("td");
         td5.innerHTML = '<input type="button" value="移除" onclick="del(this)">';
