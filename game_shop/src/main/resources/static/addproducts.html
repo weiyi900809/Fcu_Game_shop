@@ -169,7 +169,20 @@
           dataType : "json",
 
           success: function (result) {
-
+            if(result==1){
+                alert("新增成功");
+                $('#Name').val("");
+                $('#ImageURL').val("");
+                $('#Price').val("");
+                $('#Description').val("");
+            }
+            else{
+                alert("新增失敗");
+                $('#Name').val("");
+                $('#ImageURL').val("");
+                $('#Price').val("");
+                $('#Description').val("");
+            }
           },
         });
       }

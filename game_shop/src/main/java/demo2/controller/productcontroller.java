@@ -27,11 +27,12 @@ public class productcontroller {
 
     @PostMapping("/addProducts")
     @ResponseBody
-    public void addProducts(@RequestParam("Name") String Name, @RequestParam("ImageURL")String ImageURL, @RequestParam("Price")int Price, @RequestParam("Description")String Description){
+    public int addProducts(@RequestParam("Name") String Name, @RequestParam("ImageURL")String ImageURL, @RequestParam("Price")int Price, @RequestParam("Description")String Description){
+        int result=1;
 
         productmanager.addProducts(Name, ImageURL, Price, Description);
 
-
+        return  result;
     }
 
 
