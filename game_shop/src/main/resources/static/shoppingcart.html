@@ -11,7 +11,7 @@
 
     <title>購物車</title>
 </head>
-<body>
+<body >
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -60,8 +60,6 @@
         </div>
     </div>
 </nav>
-
-
 <ul class="list-group">
     <li class="list-group-item">
 
@@ -88,7 +86,6 @@
                 </tr>
                 <tr>
                     <td><input type="button" id="clear_all" value="清空購物車"></td>
-
                 </tr>
                 </tfoot>
             </table>
@@ -110,6 +107,9 @@
         </div>
     </li>
 </ul>
+
+
+
 
 <!-- Optional JavaScript; choose one of the two! -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -192,13 +192,13 @@
 <script>
  function calculate() {
   var tbody = document.getElementById("tb");
-  var prices = tbody.querySelectorAll("td:nth-child(4)");
+  var prices = tbody.querySelectorAll("td:nth-child(4)"); //選取屬於其父元素的第四個子元素的每個<td>元素
   var numbers = tbody.querySelectorAll("td:nth-child(5)>input[type=text]");
   var checkboxes = tbody.querySelectorAll("th:nth-child(1)>input");
   //console.log(prices);
    //console.log(numbers);
    //console.log(checkboxes);
- var total=0;
+  var total=0;
    for(var i = 0; i < prices.length; i++) {
     console.log("價格：" +parseInt(prices[i].innerText)+" 數量："+parseInt(numbers[i].value) + "是否勾選:" + checkboxes[i].checked);
     if(checkboxes[i].checked){

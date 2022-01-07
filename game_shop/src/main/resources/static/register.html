@@ -62,73 +62,75 @@
 </nav>
 
 
-<ul class="list-group">
-    <li class="list-group-item">
-        <div class = "container">
-            <form class="form active" method="post" >
-                <div class="card">
-                    <div class="card-header">
-                        使用者註冊
+<div
+        class="bg-image"
+        style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp'); height: 100vh; background-repeat: no-repeat; background-position: center;">
+    <!--  -->
+    <div class = "container">
+        <form class="form active" method="post" >
+            <div class="card">
+                <div class="card-header">
+                    <h1>使用者註冊</h1>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <table style="border-collapse: separate;/*border-spacing: 30px 20px;*/">
+                            <tr>
+                                <td class="margin-top:10">
+                                    <label>帳號：</label>
+                                </td>
+                                <td>
+                                    <input type="text"   id="username" class="form-control" placeholder="請輸入您的帳號">
+                                </td>
+                            </tr>
+                            <tr id="username_next_tr">
+
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>密碼:</label>
+                                </td>
+                                <td>
+                                    <input type="password" id= "password" class="form-control" placeholder="請輸入您的密碼" >
+                                </td>
+                            </tr>
+                            <tr id="password_next_tr">
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>再次輸入密碼:</label>
+                                </td>
+                                <td>
+                                    <input type="password" id= "checkpassword"  class="form-control" placeholder="再次輸入您的密碼" >
+                                </td>
+
+                            </tr>
+                            <tr id="password2_next_tr">
+
+                            </tr>
+
+
+                        </table>
+
+                    </form>
+
+                    <div class="footer">
+                        <button type="button" class="btn btn-primary" id= "button_register"  >送出</button>
                     </div>
-                    <div class="card-body">
-                        <form>
-                            <table style="border-collapse: separate;/*border-spacing: 30px 20px;*/">
-                                <tr>
-                                    <td class="margin-top:10">
-                                        <label>帳號：</label>
-                                    </td>
-                                    <td>
-                                        <input type="text"   id="username" class="form-control" placeholder="請輸入您的帳號">
-                                    </td>
-                                </tr>
-                                <tr id="username_next_tr">
 
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label>密碼:</label>
-                                    </td>
-                                    <td>
-                                        <input type="password" id= "password" class="form-control" placeholder="請輸入您的密碼" >
-                                    </td>
-                                </tr>
-                                <tr id="password_next_tr">
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label>再次輸入密碼:</label>
-                                    </td>
-                                    <td>
-                                        <input type="password" id= "checkpassword"  class="form-control" placeholder="再次輸入您的密碼" >
-                                    </td>
-
-                                </tr>
-                                <tr id="password2_next_tr">
-
-                                </tr>
-
-
-                            </table>
-
-                        </form>
-
-                        <div class="footer">
-                            <button type="button" class="btn btn-primary" id= "button_register"  >送出</button>
-                        </div>
-
-                        <div >
-                            如果您已有帳號，請點<a href="login.html">這裡</a>登入
-                        </div>
+                    <div >
+                        如果您已有帳號，請點<a href="login.html">這裡</a>登入
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
+    </div>
 
-    </li>
+</div>
 
-</ul>
+
 
 <!-- Optional JavaScript; choose one of the two! -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -165,7 +167,7 @@
           // Whether this is a POST or GET request
           type: "POST",
 
-          data : {username:$('#username').val(), password:$('#password').val()} ,
+          data : {username:$('#username').val(),password:$('#password').val()} ,
 
           dataType : "json",
 

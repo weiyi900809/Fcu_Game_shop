@@ -149,9 +149,18 @@
 
 
     $('#button_addproducts').click(function(){
+        if( checkConfirm() ){
+            $('#Name').val("");
+            $('#ImageURL').val("");
+            $('#Price').val("");
+            $('#Description').val("");
+
+        }
+        else{
+            addProducts();
+        }
 
 
-        addProducts();
 
     });
 
@@ -187,6 +196,43 @@
         });
       }
 
+      function checkConfirm(){
+          var name=$('#Name').val();
+          var imageURL=$('#ImageURL').val();
+          var price=$('#Price').val();
+          var description=$('#Description').val();
+
+          var w=document.getElementById("name_next_tr");
+          var x=document.getElementById("description_next_tr");
+          var y=document.getElementById("price_next_tr");
+          var z=document.getElementById("imageURL_next_tr");
+
+          if(name==""){
+            alert("請輸入商品名稱");
+            w.innerHTML="請輸入商品名稱";
+            w.style.color = "red";
+            return true;
+          }
+          if(imageURL==""){
+            alert("請輸入圖片網址");
+            x.innerHTML="請輸入圖片網址";
+            x.style.color = "red";
+            return true;
+          }
+          if(price==""){
+            alert("請輸入商品價格");
+            y.innerHTML="請輸入商品價格";
+            y.style.color = "red";
+            return true;
+          }
+          if(description==""){
+            alert("請輸入商品描述");
+            z.innerHTML="請輸入商品描述";
+            z.style.color = "red";
+            return true;
+          }
+
+        }
 
 
   </script>
