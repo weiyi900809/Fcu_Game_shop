@@ -152,7 +152,7 @@
 
                         </form>
                         <div  id="add_foot" class="footer">
-                            <button type="button" value="submit" class="btn btn-primary" id= "modifyProduct"  >送出修改</button>
+
 
                         </div>
 
@@ -173,7 +173,7 @@
 
 
 <!-- Optional JavaScript; choose one of the two! -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -204,13 +204,13 @@
         $('#add_Price').empty();
         $('#add_ImageURL').empty();
         $('#add_Description').empty();
-        //$('#add_footer').empty();
+        $('#add_foot').empty();
         first_getProduct();
 
     });
 
-    $('#modifyProduct').click(function(){
-        alert(123);
+    function button_modifyProduct(){
+        alert(button_modifyProduct);
         var table_body = document.getElementById("body");
         var checkboxes = table_body.querySelectorAll("th:nth-child(4)>input");
         var pass = 1;
@@ -261,7 +261,7 @@
         }
 
 
-
+        console.log(pass);
         console.log(old_name);
         console.log(old_imageURL);
         console.log(old_price);
@@ -272,7 +272,7 @@
 
 
 
-    });
+    }
 
 
 
@@ -375,7 +375,7 @@
                 $('#add_Price').empty();
                 $('#add_ImageURL').empty();
                 $('#add_Description').empty();
-                //$('#add_footer').empty();
+                $('#add_foot').empty();
 
                 emptyProducts();
                 getProducts('products');
@@ -422,61 +422,64 @@
             console.log(old_price);
             console.log(old_description);
 
-            let html = '<td></td><td></td><td></td><td width="200px">請勾選需要修改的項目</td>'
+            let html = '<td></td><td></td><td></td><td width="200px">請勾選需要修改的項目</td>';
             $('#add_row').append(html);
+
 
             html = '<td  width="150px">';
             html += '<label>修改前商品名稱:</label>';
-            html += '</td>'
+            html += '</td>';
             html += '<td>'+product.name+'</td>';
-            html += '<td width="220px">'
-            html += '<input type="text" name="Name"  id="Name" class="form-control"  placeholder="請輸入修改後的商品名稱">'
-            html += '</td>'
-            html += '<th>'
-            html += '<input type="checkbox" checked >'
-            html += '</th>'
+            html += '<td width="220px">';
+            html += '<input type="text" name="Name"  id="Name" class="form-control"  placeholder="請輸入修改後的商品名稱">';
+            html += '</td>';
+            html += '<th>';
+            html += '<input type="checkbox" checked >';
+            html += '</th>';
             $('#add_Name').append(html);
 
 
             html ='<td  width="150px">';
             html += '<label>修改前商品價格:</label>';
-            html += '</td>'
+            html += '</td>';
             html += '<td>'+product.price+'</td>';
-            html += '<td width="220px">'
-            html += '<input type="text" id= "Price" name = "Price" class="form-control"  placeholder="請輸入修改後的商品價格" >'
-            html += '</td>'
-            html += '<th>'
-            html += '<input type="checkbox" checked >'
-            html += '</th>'
+            html += '<td width="220px">';
+            html += '<input type="text" id= "Price" name = "Price" class="form-control"  placeholder="請輸入修改後的商品價格" >';
+            html += '</td>';
+            html += '<th>';
+            html += '<input type="checkbox" checked >';
+            html += '</th>';
             $('#add_Price').append(html);
 
             html ='<td  width="150px">';
             html += '<label>修改前圖片網址:</label>';
-            html += '</td>'
+            html += '</td>';
             html += '<td>'+product.imageUrl+'</td>';
-            html += '<td width="220px">'
-            html += '<input type="text" id= "ImageURL" name = "ImageURL" class="form-control"  placeholder="請輸入修改後的圖片網址" >'
-            html += '</td>'
-            html += '<th>'
-            html += '<input type="checkbox" checked >'
-            html += '</th>'
+            html += '<td width="220px">';
+            html += '<input type="text" id= "ImageURL" name = "ImageURL" class="form-control"  placeholder="請輸入修改後的圖片網址" >';
+            html += '</td>';
+            html += '<th>';
+            html += '<input type="checkbox" checked >';
+            html += '</th>';
             $('#add_ImageURL').append(html);
 
             html ='<td  width="150px">';
             html += '<label>修改前商品描述:</label>';
-            html += '</td>'
+            html += '</td>';
             html += '<td>'+product.description+'</td>';
-            html += '<td width="220px">'
-            html += '<input type="text" id= "Description" name = "Description" class="form-control"  placeholder="請輸入修改後的商品描述" >'
-            html += '</td>'
-            html += '<th>'
-            html += '<input type="checkbox" checked >'
-            html += '</th>'
+            html += '<td width="220px">';
+            html += '<input type="text" id= "Description" name = "Description" class="form-control"  placeholder="請輸入修改後的商品描述" >';
+            html += '</td>';
+            html += '<th>';
+            html += '<input type="checkbox" checked >';
+            html += '</th>';
             $('#add_Description').append(html);
 
-            /*html ='';
-            html = '<button type="button" value="submit" class="btn btn-primary" id= "modifyProduct"  >送出修改</button>';
-            $('#add_foot').append(html);*/
+            html = '<button type="button" value="submit" class="btn btn-primary"  onClick="button_modifyProduct()">送出修改</button>';
+            $('#add_foot').append(html);
+
+
+
 
           }
 
