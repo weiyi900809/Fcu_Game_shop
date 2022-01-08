@@ -25,12 +25,33 @@ public class productcontroller {
         return productmanager.getProducts(keyword);
     }
 
+    @PostMapping("/first_getProduct")
+    public List<product> getProducts(@RequestParam("ID") int id){
+
+        return productmanager.getProducts(id);
+    }
+
+    @PostMapping("/modifyProducts")
+    public int modifyProducts(@RequestParam("ID") int ID,@RequestParam("Name") String Name, @RequestParam("ImageURL")String ImageURL, @RequestParam("Price")int Price, @RequestParam("Description")String Description){
+        int result=0;
+
+        if(productmanager.modifyProducts(ID, Name, ImageURL, Price, Description)){
+            result=1;
+
+        }
+
+        return result;
+    }
+
     @PostMapping("/addProducts")
     @ResponseBody
     public int addProducts(@RequestParam("Name") String Name, @RequestParam("ImageURL")String ImageURL, @RequestParam("Price")int Price, @RequestParam("Description")String Description){
-        int result=1;
+        int result=0;
+        if(productmanager.addProducts(Name, ImageURL, Price, Description)){
+            result=1;
 
-        productmanager.addProducts(Name, ImageURL, Price, Description);
+        }
+
 
         return  result;
     }

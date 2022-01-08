@@ -32,7 +32,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="addproducts.html">新增商品</a></li>
-                        <li><a class="dropdown-item" href="#">修改商品</a></li>
+                        <li><a class="dropdown-item" href="modifyproducts.html">修改商品</a></li>
                     </ul>
                 </li>
             </ul>
@@ -233,38 +233,38 @@
  // 減少商品數量
 
  function minus_number(me) {
-  var td = me.parentNode;
-  var num = td.querySelector("input[type=text]");// 只查詢有type=number屬性的input標籤
- var r = num.value - 1;
- if( r >= 1) { // 只有減得的結果是大於等於1的情況下才需要改變文字框的值
-  num.value = r;
-    calculate();
- }
+     var td = me.parentNode;
+     var num = td.querySelector("input[type=text]");// 只查詢有type=number屬性的input標籤
+     var r = num.value - 1;
+     if( r >= 1) { // 只有減得的結果是大於等於1的情況下才需要改變文字框的值
+         num.value = r;
+         calculate();
+     }
  }
  // 改變複選框的選中狀態
  function check(me) {
   var tbody = document.getElementById("tb");
   var inputs = tbody.querySelectorAll("th input");
-  for(var i = 0; i <inputs.length; i++) {
-   inputs[i].checked = me.checked; // 根據me的checked狀態去修改下面的每個checked狀態
- }
+     for(var i = 0; i <inputs.length; i++) {
+       inputs[i].checked = me.checked; // 根據me的checked狀態去修改下面的每個checked狀態
+     }
    calculate();
  }
  // 新增商品至購物車
  function add(me) {
-  var tbody = document.getElementById("tb");
-   var div = me.parentNode;
-  var spans = div.getElementsByTagName("span"); // 獲得商品名字和價格的span
- var name = spans[0].innerText; // 獲得商品名字
+     var tbody = document.getElementById("tb");
+     var div = me.parentNode;
+     var spans = div.getElementsByTagName("span"); // 獲得商品名字和價格的span
+     var name = spans[0].innerText; // 獲得商品名字
 
- var col_1 = tbody.querySelectorAll("td:nth-child(2)"); // nth-child 作為第幾個孩子
- var found = null; // found 變數代表購物車中找到的td
- for(var i = 0; i<col_1.length; i++) {
-  if( col_1[i].innerText == name) {
-   found = col_1[i];
-   break;
- }
- }
+     var col_1 = tbody.querySelectorAll("td:nth-child(2)"); // nth-child 作為第幾個孩子
+     var found = null; // found 變數代表購物車中找到的td
+     for(var i = 0; i<col_1.length; i++) {
+         if( col_1[i].innerText == name) {
+           found = col_1[i];
+           break;
+         }
+      }
 
  if(found != null) { //商品名字存在
       // 修改數量 found 是找到的td

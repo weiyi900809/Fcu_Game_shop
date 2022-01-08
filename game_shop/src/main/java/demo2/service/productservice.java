@@ -41,7 +41,18 @@ public class productservice {
 
         }
     }
-    public void addProducts( String Name, String ImageURL, int Price, String Description){
+    public List<product> getProducts(int ID) {
+        try (Connection connection = sql2oDbHandler.getConnector().open()) {
+            String query = "select ID id, Name name, ImageURL imageUrl, Price price, Description description"
+                    + " from product where ID = :keyword";
+
+            return connection.createQuery(query)
+                    .addParameter("keyword", ID)
+                    .executeAndFetch(product.class);
+
+        }
+    }
+    public boolean addProducts( String Name, String ImageURL, int Price, String Description){
         String insertQuery =
                 "INSERT INTO product (Name , ImageURL, Price , Description ) "
 
@@ -53,9 +64,30 @@ public class productservice {
                     .addParameter("price",Price )//account.getUName()
                     .addParameter("description",Description) //account.getPassword()
                     .executeUpdate();
+            return true;
         }
 
+
     }
+    public boolean modifyProducts(int ID, String Name, String ImageURL, int Price, String Description){
+        String insertQuery =
+                "UPDATE product "
+                        +"SET Name = :name, ImageURL = :imageURL , Price =   :price, Description = :description "
+                        +"WHERE ID = :id";
+        try (Connection con = sql2oDbHandler.getConnector().open()) {
+            con.createQuery(insertQuery)
+                    .addParameter("id",ID )
+                    .addParameter("name",Name )//account.getUName()
+                    .addParameter("imageURL",ImageURL) //account.getPassword()
+                    .addParameter("price",Price )//account.getUName()
+                    .addParameter("description",Description) //account.getPassword()
+                    .executeUpdate();
+            return true;
+        }
+
+
+    }
+
 
 
 }

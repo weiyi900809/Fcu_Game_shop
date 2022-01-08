@@ -32,7 +32,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="addproducts.html">新增商品</a></li>
-                        <li><a class="dropdown-item" href="#">修改商品</a></li>
+                        <li><a class="dropdown-item" href="modifyproducts.html">修改商品</a></li>
                     </ul>
                 </li>
             </ul>
@@ -177,6 +177,7 @@
                 alert("註冊成功");
                 history.go(0);
             } else if(result == 0){
+
                 alert("此帳號已存在");
                 s.innerHTML="此帳號已存在";
                 s.style.color = "red";
