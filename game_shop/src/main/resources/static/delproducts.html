@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>修改商品</title>
+    <title>刪除商品</title>
 </head>
 <body>
 
@@ -83,7 +83,7 @@
             <form class="form active" method="post" >
                 <div class="card">
                     <div class="card-header">
-                        <h1>修改商品</h1>
+                        <h1>刪除商品</h1>
                     </div>
                     <div class="card-body">
                         <form>
@@ -91,7 +91,7 @@
 
                                 <tr>
                                     <td  width="150px">
-                                        <label>需要修改的商品ID:</label>
+                                        <label>需要刪除的商品ID:</label>
                                     </td>
                                     <td>
                                         <input type="text" name="ID"  id="ID" class="form-control" placeholder="請輸入商品ID">
@@ -119,9 +119,9 @@
                         <form>
                             <table  style="border-collapse: separate; width:100%; ">
                                 <thead>
-                                    <tr id="add_row">
+                                <tr id="add_row">
 
-                                    </tr>
+                                </tr>
                                 </thead>
                                 <tbody id="body">
 
@@ -188,14 +188,7 @@
 -->
 
 <script>
-    var old_name ;
-    var old_imageURL;
-    var old_price ;
-    var old_description;
-    var name;
-    var imageURL;
-    var price ;
-    var description;
+
 
     $('#button_submitID').click(function(){
 
@@ -210,65 +203,18 @@
 
     });
 
-    function button_modifyProduct(){
-
-        var table_body = document.getElementById("body");
-        var checkboxes = table_body.querySelectorAll("th:nth-child(4)>input");
+    function button_delProduct(){
+        var id = $('#ID').val();
         var pass = 1;
-        name = $('#Name').val();
-        imageURL = $('#ImageURL').val();
-        price = $('#Price').val();
-        description = $('#Description').val();
-
-        if(!checkboxes[0].checked & !checkboxes[1].checked & !checkboxes[2].checked & !checkboxes[3].checked){
-            alert("不能全部都不勾選");
-            pass = 0;
-            $('#Name').val("");
-            $('#ImageURL').val("");
-            $('#Price').val("");
-            $('#Description').val("");
-        }
-
-        if(!checkboxes[0].checked){
-            name = old_name;
-        }
-
-        if(!checkboxes[1].checked){
-            imageURL = old_imageURL;
-        }
-        if(!checkboxes[2].checked){
-            price = old_price;
-        }
-        if(!checkboxes[3].checked){
-            description = old_description;
-        }
-
-        if(checkboxes[0].checked & name ==""){
-            pass = 0;
-            alert("請輸入修改後的名稱");
-
-        }
-        if(checkboxes[1].checked & imageURL ==""){
-            pass = 0;
-            alert("請輸入修改後的圖片網址");
-        }
-        if(checkboxes[2].checked & price ==""){
-            pass = 0;
-            alert("請輸入修改後的價格");
-        }
-        if(checkboxes[3].checked & description ==""){
-            pass = 0;
-            alert("請輸入修改後的商品描述");
-        }
-
 
         console.log(pass);
-        console.log(old_name);
-        console.log(old_imageURL);
-        console.log(old_price);
-        console.log(old_description);
+        if(id == ""){
+        pass=0;
+        alert()
+        }
+
         if(pass == 1){
-            modifyProducts();
+            delProducts();
         }
 
 
@@ -292,8 +238,6 @@
       } else {
         emptyProducts();
         getProducts('products/' + keyword);
-
-
       }
 
     });
@@ -351,25 +295,22 @@
     }
 
 
-    function modifyProducts(){
+    function delProducts(){
         $.ajax({
 
-          url: "/modifyProducts",
+          url: "/delProducts",
 
           type: "POST",
 
-          data : {ID:$('#ID').val(), Name:name, ImageURL:imageURL, Price:price , Description:description} ,
+          data : {ID:$('#ID').val()} ,
 
           dataType : "json",
 
           success: function (result) {
             if(result==1){
-                alert("修改成功");
+                alert("刪除成功");
                 $('#ID').val("");
-                $('#Name').val("");
-                $('#ImageURL').val("");
-                $('#Price').val("");
-                $('#Description').val("");
+
 
                 $('#add_row').empty();
                 $('#add_Name').empty();
@@ -382,11 +323,8 @@
                 getProducts('products');
             }
             else{
-                alert("修改失敗");
-                $('#Name').val("");
-                $('#ImageURL').val("");
-                $('#Price').val("");
-                $('#Description').val("");
+                alert("刪除失敗");
+
             }
           },
         });
@@ -413,30 +351,12 @@
           let products = json;
 
           for ( let product of products ) {
-            old_name = product.name;
-            old_price = product.price;
-            old_imageURL = product.imageUrl;
-            old_description = product.description;
 
-            console.log(old_name);
-            console.log(old_imageURL);
-            console.log(old_price);
-            console.log(old_description);
-
-            let html = '<td></td><td></td><td></td><td width="200px">請勾選需要修改的項目</td>';
-            $('#add_row').append(html);
-
-
-            html = '<td  width="150px">';
+            let html = '<td  width="150px">';
             html += '<label>修改前商品名稱:</label>';
             html += '</td>';
             html += '<td>'+product.name+'</td>';
-            html += '<td width="220px">';
-            html += '<input type="text" name="Name"  id="Name" class="form-control"  placeholder="請輸入修改後的商品名稱">';
-            html += '</td>';
-            html += '<th>';
-            html += '<input type="checkbox" checked >';
-            html += '</th>';
+
             $('#add_Name').append(html);
 
 
@@ -444,39 +364,24 @@
             html += '<label>修改前商品價格:</label>';
             html += '</td>';
             html += '<td>'+product.price+'</td>';
-            html += '<td width="220px">';
-            html += '<input type="text" id= "Price" name = "Price" class="form-control"  placeholder="請輸入修改後的商品價格" >';
-            html += '</td>';
-            html += '<th>';
-            html += '<input type="checkbox" checked >';
-            html += '</th>';
+
             $('#add_Price').append(html);
 
             html ='<td  width="150px">';
             html += '<label>修改前圖片網址:</label>';
             html += '</td>';
             html += '<td>'+product.imageUrl+'</td>';
-            html += '<td width="220px">';
-            html += '<input type="text" id= "ImageURL" name = "ImageURL" class="form-control"  placeholder="請輸入修改後的圖片網址" >';
-            html += '</td>';
-            html += '<th>';
-            html += '<input type="checkbox" checked >';
-            html += '</th>';
+
             $('#add_ImageURL').append(html);
 
             html ='<td  width="150px">';
             html += '<label>修改前商品描述:</label>';
             html += '</td>';
             html += '<td>'+product.description+'</td>';
-            html += '<td width="220px">';
-            html += '<input type="text" id= "Description" name = "Description" class="form-control"  placeholder="請輸入修改後的商品描述" >';
-            html += '</td>';
-            html += '<th>';
-            html += '<input type="checkbox" checked >';
-            html += '</th>';
+
             $('#add_Description').append(html);
 
-            html = '<button type="button" value="submit" class="btn btn-primary"  onClick="button_modifyProduct()">送出修改</button>';
+            html = '<button type="button" value="submit" class="btn btn-primary"  onClick="button_delProduct()">刪除</button>';
             $('#add_foot').append(html);
 
 

@@ -31,6 +31,19 @@ public class productcontroller {
         return productmanager.getProducts(id);
     }
 
+    @PostMapping("/delProducts")
+    public int delProducts(@RequestParam("ID") int ID ){
+        int result=0;
+
+        if(productmanager.delProducts(ID)){
+            result=1;
+
+        }
+
+        return result;
+    }
+
+
     @PostMapping("/modifyProducts")
     public int modifyProducts(@RequestParam("ID") int ID,@RequestParam("Name") String Name, @RequestParam("ImageURL")String ImageURL, @RequestParam("Price")int Price, @RequestParam("Description")String Description){
         int result=0;

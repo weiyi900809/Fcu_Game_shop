@@ -88,6 +88,20 @@ public class productservice {
 
     }
 
+    public boolean delProducts( int ID){
+        String insertQuery =
+                "DELETE FROM product "
+                        + "WHERE ID = :id";
+        try (Connection con = sql2oDbHandler.getConnector().open()) {
+            con.createQuery(insertQuery)
+                    .addParameter("id",ID )//account.getUName()
+                    .executeUpdate();
+            return true;
+        }
+
+
+    }
+
 
 
 }
