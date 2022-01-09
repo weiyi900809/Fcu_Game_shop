@@ -69,5 +69,18 @@ public class productcontroller {
         return  result;
     }
 
+    @PostMapping("/shoppingcart")
+    @ResponseBody
+    public int addProductsToShoppingcart(@RequestParam("Name") String Name, @RequestParam("ImageURL")String ImageURL, @RequestParam("Price")int Price, @RequestParam("Description")String Description){
+        int result=0;
+        if(productmanager.addProductsToShoppingcart(Name, ImageURL, Price, Description)){
+            result=1;
+
+        }
+
+
+        return  result;
+    }
+
 
 }

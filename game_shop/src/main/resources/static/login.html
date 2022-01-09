@@ -119,11 +119,12 @@
 
 
 <script>
-
+    var username  ;
+    var password  ;
     $('#button_login').click(function(){
-        var username =$('#username').val() ;
-        var password =$('#password').val() ;
 
+      username =$('#username').val() ;
+      password =$('#password').val() ;
       if(username=="" || password == ""){
         alert("登入失敗，帳號或密碼不能為空");
 
@@ -153,7 +154,8 @@ function login(){
           success: function (result) {
             var s=document.getElementById("login_next_td");
             if (result == 1) {
-                alert("登入成功");
+                alert("登入成功，您好，"+username);
+
                 history.go(0);
             } else if(result == 0){
                 alert("登入失敗，請確認帳號密碼是否有誤");
